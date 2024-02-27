@@ -1,17 +1,12 @@
-from django.contrib.auth.backends import ModelBackend, RemoteUserBackend
-
+from django.contrib.auth.backends import ModelBackend
 from rest_framework.response import Response
 from rest_framework import status
-
-from prod.settings import USER_ACCESS
-
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
 
 class PasswordlessAuthBackend(ModelBackend):
-
     def authenticate(self, username=None, password=None, **kwargs):
         try:
             if username is None:
@@ -20,10 +15,10 @@ class PasswordlessAuthBackend(ModelBackend):
                 user = User.objects.get(username=username['username'])
                 return Response(user)
 
-                #if user.check_password(username['password']) is True:
-                    #return Response(user)
-                #else:
-                    #return Response({'data': 'Invalid password.', 'value': False}, status=status.HTTP_400_BAD_REQUEST)
+                # if user.check_password(username['password']) is True:
+                # return Response(user)
+                # else:
+                # return Response({'data': 'Invalid password.', 'value': False}, status=status.HTTP_400_BAD_REQUEST)
 
         except User.DoesNotExist:
             return Response({'data': 'Invalid username/password, Please contact your administrator', 'value': False},

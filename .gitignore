@@ -1,2 +1,6 @@
-# created by virtualenv automatically
-*/venv/
+venv/
+jupyter/
+gunicorn.pid
+requirements.txt
+datas/migrations
+users/migrations

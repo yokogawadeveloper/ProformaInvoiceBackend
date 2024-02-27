@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
-import os, datetime
+import os
 import getpass
 from datetime import timedelta
 
@@ -85,14 +85,13 @@ WSGI_APPLICATION = 'prod.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-##DATABASE_ROUTERS = ['prod.db_router.SecondExternalDBRouter']
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'ProformaInvoice',
+        'NAME': 'performaV1',
         'USER': 'postgres',
-        'PASSWORD': 'Yil@1234567',
+        'PASSWORD': 'Yil@123456',
         'HOST': 'localhost',
         'PORT': '5432',
         'ENFORCE_SCHEMA': False,
@@ -102,11 +101,6 @@ DATABASES = {
 AUTH_USER_MODEL = "users.User"
 
 
-# REST_FRAMEWORK = {
-#     'DEFAULT_AUTHENTICATION_CLASSES': [
-#         'rest_framework_simplejwt.authentication.JWTAuthentication',
-#     ],
-# }
 
 
 # Password validation

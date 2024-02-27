@@ -52,11 +52,6 @@
             font-size: 16px;
         }
 
-        .f18{
-            font-size: 17px;
-            line-height: 0.7;
-        }
-
         @media print {
             .static-content {
                 page-break-after: always;
@@ -138,13 +133,13 @@
                         <div>PROFORMA INVOICE NO :{{Sale_Order_No}}</div>
                         <div>
                             <span>DATE :{{PI_date}}</span>&nbsp;&nbsp;
-                             <!-- {% if MatReadyDate != None %}
+                             {% if MatReadyDate != None %}
                             <span style="color: red; font-size: 12px;"><b>MATERIAL READINESS DATE :&nbsp;{{MatReadyDate}}</b></span>
-                            {% endif %} -->
+                            {% endif %}
                         </div>
-                        <!-- <div>
+                        <div>
                             <span>Location :{{region}}</span>&nbsp;&nbsp;
-                        </div> -->
+                        </div>
                     </div>
                 </td>
             </tr>
@@ -183,12 +178,11 @@
 
     <table class="f12" style="width:100%;">
         <tr>
-            <!-- change 2 start have just changed height value has been decreased before it was 400 -->
-            <td class="left top right bottom line-spacing" style="height: 355px; padding: 0px;" valign="top">
+            <td class="left top right bottom line-spacing" style="height: 400px; padding: 0px;" valign="top">
                 <table style="width:100%; margin-top: 2px;border: none;letter-spacing: 1px;" align="center" border="0">
                     <tbody>
                         {% if Type == "M" %}
-                            {% if length < 3 %}
+                            {% if length < 4 %}
                                 {% for item in order|dictsort:'Revno' %}
                                     <tr>
                                         <td style='width: 10%;text-align: left; vertical-align: top;'>
@@ -298,7 +292,7 @@
                                 {% endfor %}
                             {% else %}
                                 <tr>
-                                    <td style='border:none; text-align: left; padding-top: 23px;'>AS PER ANNEXURE SHEET</td>
+                                    <td style='border:none; text-align: left; padding-top: 30px;'>AS PER ANNEXURE SHEET</td>
                                     <td style='border:none; text-align: center;'></td>
                                     <td style='border:none; text-align: center;'></td>
                                     <td style='border:none; text-align: center;'></td>
@@ -360,245 +354,10 @@
         </tr>
     </table>
 
-    <!-- change 1 start -->
-
-    <table class="left top right bottom f18" style="width:100%;">
-        <tbody>
-            <tr>
-                <td class="left top right bottom f18" style="padding:0px; width:50%; vertical-align: top;">
-                        <table class="f18" style="width:100%;">
-                            <tbody>
-                            <tr>
-                             {% if MatReadyDate != None %}
-                                <td style='text-align: left;color:red;font-family:Arial'>Material Readiness @ YIL Ex-works =&nbsp;<b>{{MatReadyDate}}</b></td>
-                            {% endif %}
-                            </tr>
-                            <tr>
-                                <td style='text-align: left;color:red;font-family:Arial;line-height: 1;'>Remarks : For the contracts/PO wherein shipment date is linked to the payment receipt (e.g Proforma Payment), Contractual Delivery Date (CDD) exworks YIL, shall stand revised to 5 working days from the receipt of the payment.</td>
-                            </tr>
-                        </tbody>
-                        </table>
-                </td>
-               
-                <td class="left top right bottom f12" style="padding:0px; width:50%; vertical-align: top;">
-                    <table class="f14" style="width:100%;">
-                        <tbody>   
-                            {% if Type == "M" %}
-                                <tr>
-                                    <td style='text-align: left; padding:3px; letter-spacing: 1px; font-weight: bold;'>SUBTOTAL</td>
-                                    <td style='text-align: right;font-weight: bold;'>{{TotalUnitPriceValue|floatformat:"2"}}</td>
-                                </tr>
-                            {% endif %}
-
-                            {% if Type == "A" %}
-                                <tr>
-                                    <td style='text-align: left; padding:3px; letter-spacing: 1px; font-weight: bold;'>SUBTOTAL</td>
-                                    <td style='text-align: right;font-weight: bold;'>{{TotalUnitPrice|floatformat:"2"}}</td>
-                                </tr>
-                            {% endif %}
-                            {% if Type == "R" %}
-                                <tr>
-                                    <td style='text-align: left; letter-spacing: 1px; font-weight: bold;'>SUBTOTAL</td>
-                                    <td style='text-align: right;font-weight: bold;'>{{TotalUnitPrice|floatformat:"2"}}</td>
-                                </tr>
-                            {% endif %}
-                       
-                            {% if PI_TotalDiscount == null %}
-                                <tr>
-                                    <td style='text-align: left; font-weight: bold;'>&nbsp;&nbsp;(a)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Discount :</td>
-                                    <td style='text-align: right;font-weight: bold;'>0.00</td>
-                                </tr>
-                            {% endif %}
-                            {% if PI_TotalDiscount != null %}
-                                <tr>
-                                    <td style='text-align: left;font-weight: bold;'>&nbsp;&nbsp;(a)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Discount :</td>
-                                    <td style='text-align: right;font-weight: bold;'>{{total_discount|floatformat:"2"}}</td>
-                                </tr>
-                            {% endif %}
-                       
-                            {% if PI_TotalPf == null %}
-                                <tr>
-                                    <td style='text-align: left; font-weight: bold;'>&nbsp;&nbsp;(b)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;P&nbsp;&&nbsp;F :</td>
-                                    <td style='text-align: right;font-weight: bold;'>0.00</td>
-                                </tr>
-                            {% endif %}
-                            {% if PI_TotalPf != null %}
-                                <tr>
-                                    <td style='text-align: left; font-weight: bold;'>&nbsp;&nbsp;(b)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;P&nbsp;&&nbsp;F :</td>
-                                    <td style='text-align: right;font-weight: bold;'>{{PI_TotalPf|floatformat:"2"}}</td>
-                                </tr>
-                            {% endif %}
-
-                            {% if PI_TotalFreight == null %}
-                                    <tr>
-                                        <td style='text-align: left;font-weight: bold;'>&nbsp;&nbsp;(c)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Freight :</td>
-                                        <td style='text-align: right;font-weight: bold;'>0.00</td>
-                                    </tr>
-                            {% endif %}
-                            {% if PI_TotalFreight != null %}
-                                    <tr>
-                                        <td style='text-align: left;font-weight: bold;'>&nbsp;&nbsp;(c)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Freight :</td>
-                                        <td style='text-align: right;font-weight: bold;'>{{PI_TotalFreight|floatformat:"2"}}</td>
-                                    </tr>
-                                {% endif %}
-
-                            {% if PI_TotalCGST != null and PI_TotalCGST != 0 %}
-                                    <tr>
-                                        <td style='text-align: left;font-weight: bold;'>&nbsp;&nbsp;(d)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CGST@{{CGST_Percent|floatformat}}% :</td>
-                                        {% if Type == "M" %}
-                                        <td style='text-align: right;font-weight: bold;'>{{total_order_CGST|floatformat:"2"}}</td>
-                                        {% endif %}
-                                        {% if Type == "A" %}
-                                        <td style='text-align: right;font-weight: bold;'>{{PI_TotalCGST|floatformat:"2"}}</td>
-                                        {% endif %}
-                                    </tr>
-                        {% endif %}
-                      
-                            {% if PI_TotalSGST != null and PI_TotalSGST != 0 %}
-                                    <tr>
-                                        <td style='text-align: left;font-weight: bold;'>&nbsp;&nbsp;(e)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SGST@{{SGST_Percent|floatformat}}% :</td>
-                                        {% if Type == "M" %}
-                                        <td style='text-align: right;font-weight: bold;'>{{total_order_SGST|floatformat:"2"}}</td>
-                                        {% endif %}
-                                        {% if Type == "A" %}
-                                        <td style='text-align: right;font-weight: bold;'>{{PI_TotalSGST|floatformat:"2"}}</td>
-                                        {% endif %}
-                                    </tr>
-
-                                    {% if TCSAmount != null and TCSAmount != 0 %}
-                                    <tr>
-                                        <td style='text-align: left;font-weight: bold;'>&nbsp;&nbsp;(f)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TCS:{{TCS}}%</td>
-                                        <td style='text-align: right;font-weight: bold;'>{{TCSAmount}}</td>
-                                    </tr>
-                                    {% endif %}
-                        {% endif %}
-                       
-                            {% if PI_TotalIGST != null and PI_TotalIGST != 0 %}
-                                    <tr>
-                                        <td style='text-align: left;font-weight: bold;'>&nbsp;&nbsp;(d)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IGST@{{IGST_Percent|floatformat}}% :</td>
-                                        {% if Type == "M" %}
-                                        <td style='text-align: right;font-weight: bold;'>{{total_order_IGST|floatformat:"2"}}</td>
-                                        {% endif %}
-                                        {% if Type == "A" %}
-                                        <td style='text-align: right;font-weight: bold;'>{{PI_TotalIGST|floatformat:"2"}}</td>
-                                        {% endif %}
-                                    </tr>
-
-                                    {% if TCSAmount != null and TCSAmount != 0 %}
-                                    <tr>
-                                        <td style='text-align: left;font-weight: bold;'>&nbsp;&nbsp;(e)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TCS:{{TCS}}%</td>
-                                        <td style='text-align: right;font-weight: bold;'>{{TCSAmount}}</td>
-                                    </tr>
-                                    {% endif %}
-                                   
-                                {% endif %}
-        
-                            {% if zero_CGST == 0 and zero_CGST_value == 0 %}
-                           
-                                <tr>
-                                    <td style='text-align: left; font-weight: bold;'>&nbsp;&nbsp;(d)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CGST@0% :</td>
-                                    <td style='text-align: right;font-weight: bold;'>{{total_order_CGST|floatformat:"2"}}</td>
-                                </tr>
-                           
-                            {% endif %}
-                         
-                            {% if zero_SGST == 0 and zero_SGST_value == 0 %}
-                           
-                                <tr>
-                                    <td style='text-align: left; font-weight: bold;'>&nbsp;&nbsp;(e)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SGST@0% :</td>
-                                    <td style='text-align: right;font-weight: bold;'>{{total_order_SGST|floatformat:"2"}}</td>
-                                </tr>
-                           
-                            {% endif %}
-                        
-                            {% if zero_IGST == 0 and zero_IGST_value == 0 %}
-                           
-                                <tr>
-                                    <td style='text-align: left; font-weight: bold;'>&nbsp;&nbsp;(d)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IGST@0% :</td>
-                                    <td style='text-align: right;font-weight: bold;'>{{total_order_IGST|floatformat:"2"}}</td>
-                                </tr>
-                           
-                            {% endif %}
-                       
-                            {% if PI_TotalIGST == null and PI_TotalIGST == 0 and PI_TotalSGST == null and PI_TotalSGST == 0  %}
-                                {% if TCSAmount != null and TCSAmount != 0 %}
-                                
-                                    <tr>
-                                        <td style='text-align: left; font-weight: bold;'>&nbsp;&nbsp;(d)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TCS:{{TCS}}%</td>
-                                        <td style='text-align: right;font-weight: bold;'>{{TCSAmount}}</td>
-                                    </tr>
-                              
-                                {% endif %}
-                            {% endif %}
-                       
-
-                        
-                                <tr>
-                                    {% if Type == "M" %}
-                                    <td style='text-align: left; font-weight: bold;'>TOTAL</td>
-                                    <td style='text-align: right;font-weight: bold;'>{{TotalAmount|floatformat:"2"}}</td>
-                                    {% endif %}
-                                    {% if Type == "A" %}
-                                    <td style=' text-align: left; font-weight: bold;'>TOTAL</td>
-                                    <td style=' text-align: right; font-weight: bold;'>{{TotalAmountWithTCS|floatformat:"2"}}</td>
-                                    {% endif %}
-                                    {% if Type == "R" %}
-                                        <td style=' text-align: left; font-weight: bold;'>TOTAL</td>
-                                        <td style=' text-align: right; font-weight: bold;'>{{TotalAmountWithTCS|floatformat:"2"}}</td>
-                                    {% endif %}
-                                </tr>
-                            
-
-                         
-                                <tr>
-                                    {% if Advance == null %}
-                                        <td style=' text-align: left; font-weight: bold;'>&nbsp;&nbsp;(a)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Less:&nbsp;Advance</td>
-                                        <td style=' text-align: right;font-weight: bold;'>0.00</td>
-                                    {% endif %}
-                                    {% if Advance != null %}
-                                        <td style=' text-align: left; font-weight: bold;'>&nbsp;&nbsp;(a)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Less:&nbsp;Advance</td>
-                                        <td style=' text-align: right; font-weight: bold;'>{{Advance|floatformat:"2"}}</td>
-                                    {% endif %}
-                                </tr>
-                            
-
-                         
-                                    <tr>
-                                        {% if Retention == null %}
-                                            <td style=' text-align: left;font-weight: bold;'>&nbsp;&nbsp;(b)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Less:&nbsp;Retention</td>
-                                            <td style=' text-align: right; font-weight: bold;'>0.00</td>
-                                        {% endif %}
-                                        {% if Retention != null %}
-                                            <td style=' text-align: left;  font-weight: bold;'>&nbsp;&nbsp;(b)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Less:&nbsp;Retention</td>
-                                            <td style=' text-align: right;font-weight: bold;'>{{Retention|floatformat:"2"}}</td>
-                                        {% endif %}
-                                    </tr>
-                            
-
-                       
-                                    <tr>
-                                        {% if TotalAmountWithTCS == null %}
-                                            <td style=' text-align: left; padding:3px; letter-spacing: 1px; font-weight: bold;font-size:18px;'>BALANCE</td>
-                                            <td style=' text-align: right; padding:3px; font-weight: bold;font-size:18px;'>0.00</td>
-                                        {% endif %}
-                                        {% if TotalAmountWithTCS != null %}
-                                            <td style=' text-align: left; padding:3px; letter-spacing: 1px; font-weight: bold;font-size:18px;'>BALANCE</td>
-                                            <td style=' text-align: right; padding:3px; font-weight: bold;font-size:18px;'>{{TotalAmountWithTCS|floatformat:"2"}}</td>
-                                        {% endif %}
-                                    </tr>
-        </tbody>
-        </table>
-        </td>
-            </tr>                    
-        </tbody>
-    </table>
-
-    <!-- chanhe 1 end -->
 
 
 
-<!-- start of change -->
-    <!-- <table class="left top right bottom f14" style="width:100%;" align="center">
+    <table class="left top right bottom f14" style="width:100%;" align="center">
         <tbody>
             <tr>
                 {% if Type == "M" %}
@@ -648,6 +407,7 @@
             {% if PI_TotalCGST != null and PI_TotalCGST != 0 %}
                 <tr>
                     <td style=' text-align: left; padding:3px; font-weight: bold;'>&nbsp;&nbsp;(d)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CGST@{{CGST_Percent|floatformat}}% :</td>
+<!--                    <td style=' text-align: right; padding:3px; font-weight: bold;'>{{PI_TotalCGST|floatformat:"2"}}</td>-->
                     {% if Type == "M" %}
                         <td style=' text-align: right; padding:3px; font-weight: bold;'>{{total_order_CGST|floatformat:"2"}}</td>
                     {% endif %}
@@ -660,6 +420,7 @@
             {% if PI_TotalSGST != null and PI_TotalSGST != 0 %}
                 <tr>
                     <td style=' text-align: left; padding:3px; font-weight: bold;'>&nbsp;&nbsp;(e)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SGST@{{SGST_Percent|floatformat}}% :</td>
+<!--                    <td style=' text-align: right; padding:3px; font-weight: bold;'>{{PI_TotalSGST|floatformat:"2"}}</td>-->
                     {% if Type == "M" %}
                     <td style=' text-align: right; padding:3px; font-weight: bold;'>{{total_order_SGST|floatformat:"2"}}</td>
                     {% endif %}
@@ -678,6 +439,7 @@
             {% if PI_TotalIGST != null and PI_TotalIGST != 0 %}
             <tr>
                 <td style=' text-align: left; padding:3px; font-weight: bold;'>&nbsp;&nbsp;(d)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IGST@{{IGST_Percent|floatformat}}% :</td>
+<!--                <td style=' text-align: right; padding:3px; font-weight: bold;'>{{PI_TotalIGST|floatformat:"2"}}</td>-->
                     {% if Type == "M" %}
                         <td style=' text-align: right; padding:3px; font-weight: bold;'>{{total_order_IGST|floatformat:"2"}}</td>
                     {% endif %}
@@ -743,7 +505,6 @@
                     <td style=' text-align: right; padding:3px; font-weight: bold;'>{{TotalAmountWithTCS|floatformat:"2"}}</td>
                 {% endif %}
             </tr>
-
             <tr>
                 {% if Advance == null %}
                     <td style=' text-align: left; padding:3px; font-weight: bold;'>&nbsp;&nbsp;(a)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Less:&nbsp;Advance</td>
@@ -764,7 +525,16 @@
                     <td style=' text-align: right; padding:3px; font-weight: bold;'>{{Retention|floatformat:"2"}}</td>
                 {% endif %}
             </tr>
-
+<!--            <tr>-->
+<!--                {% if Freight == null %}-->
+<!--                    <td style=' text-align: left; padding:3px; font-weight: bold;'>&nbsp;&nbsp;(c)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Add:&nbsp;Freight</td>-->
+<!--                    <td style=' text-align: right; padding:3px; font-weight: bold;'>0.00</td>-->
+<!--                {% endif %}-->
+<!--                {% if Freight != null %}-->
+<!--                    <td style=' text-align: left; padding:3px; font-weight: bold;'>&nbsp;&nbsp;(c)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Add:&nbsp;Freight</td>-->
+<!--                    <td style=' text-align: right; padding:3px; font-weight: bold;'>{{Freight|floatformat:"2"}}</td>-->
+<!--                {% endif %}-->
+<!--            </tr>-->
 
             <tr>
                 {% if TotalAmountWithTCS == null %}
@@ -777,10 +547,9 @@
                 {% endif %}
             </tr>
         </tbody>
-    </table> -->
-    <!-- end of change -->
+    </table>
 
-    <!-- <table class="left top right bottom f14" style="width:100%;" align="center">
+    <table class="left top right bottom f14" style="width:100%;" align="center">
         <tbody>
             <tr>
                 <td class="f12" style="padding: 3px;">
@@ -790,10 +559,9 @@
                 </td>
             </tr>
         </tbody>
-    </table> -->
+    </table>
 
-    <!-- change 2 start just included static-content value here -->
-    <table class="left top right bottom f14" style="width:100%;" align="center" >
+    <table class="left top right bottom f14" style="width:100%;" align="center">
         <tbody>
           <tr style="height: 180px; vertical-align: top;">
               <td class="left top right bottom" style="width: 50%; padding: 0px;">
@@ -825,8 +593,7 @@
     </table>
 
 
-
-    {% if length > 2 %}
+    {% if length > 3 %}
 <!--        <div class="head-repeat">-->
 <!--            <br><br><br><br><br><br><br><br>-->
 <!--            <div>-->

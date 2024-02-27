@@ -1,10 +1,8 @@
-import datetime
 from rest_framework import serializers
 from .models import orderAcknowledgement, orderAcknowledgementHistory
 
 
 class orderAcknowledgementHistorySerializer(serializers.ModelSerializer):
-
     class Meta:
         model = orderAcknowledgementHistory
         fields = '__all__'

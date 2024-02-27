@@ -1,6 +1,6 @@
 from rest_framework.response import Response
 from users.models import User
-
+from rest_framework import status
 
 def userDataList(data):
     df = data.where(data.notna(), None)

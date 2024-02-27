@@ -15,16 +15,21 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from django.conf.urls import url, include
+from django.urls import include
 from .routers import router
 
 from wkhtmltopdf.views import PDFTemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'^', include('excelupload.urls')),
-    url(r'^user/',  include('users.urls')),
-    url(r'^', include(router.urls)),
-    url(r'^pdf/$', PDFTemplateView.as_view(template_name='index.html',
-                                           filename='Invoice.pdf'), name='pdf'),
+    path('', include('excelupload.urls')),
+    path('user/',  include('users.urls')),
+    path('', include(router.urls)),
+    path('pdf/', PDFTemplateView.as_view(template_name='index.html', filename='Invoice.pdf'), name='pdf'),
+         
+    # url(r'^', include('excelupload.urls')),
+    # url(r'^user/',  include('users.urls')),
+    # url(r'^', include(router.urls)),
+    # url(r'^pdf/$', PDFTemplateView.as_view(template_name='index.html',
+    #                                        filename='Invoice.pdf'), name='pdf'),
 ]

@@ -4,7 +4,8 @@ from datetime import datetime
 from rest_framework.response import Response
 from rest_framework import status
 
-from .models import proformaItemMaster, proformaItem
+# from .models import proformaItemMaster, proformaItem
+from excelupload.models import  proformaItemMaster, proformaItem
 from orderack.models import orderAcknowledgement, orderAcknowledgementHistory
 
 pattern = re.compile(r"^(\w+)(,\s*\w+)*$")
@@ -36,10 +37,8 @@ def data_crud(obj, val, user):
 
     for i in range(len(val)):
         if val[i] == 120:
-
             if i != 0:
                 count += 1
-
             df.loc[count, 'OAItemNo'] = obj.loc[i, 'col_0']
             df.loc[count, 'item_no'] = obj.loc[i, 'col_31']
             df.loc[count, 'material_desc'] = obj.loc[i, 'col_32']

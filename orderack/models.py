@@ -1,6 +1,6 @@
 from django.db import models
 from users.models import User
-from excelupload.models import proformaItem, proformaItemMaster
+from excelupload.models import proformaItemMaster
 
 # Create your models here.
 

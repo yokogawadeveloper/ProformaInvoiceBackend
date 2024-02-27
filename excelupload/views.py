@@ -1,5 +1,4 @@
-import datetime
-import os, base64
+import os
 
 from rest_framework.views import APIView
 from rest_framework import viewsets
@@ -7,27 +6,22 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 from django.core.files.storage import default_storage
 
-import itertools, os.path, re, smtplib, numpy as np, pandas as pd
-from datetime import datetime as dt, timedelta
+import os.path
+import pandas as pd
 from rest_framework.decorators import action
 from django.db.models import Q
 from rest_framework import permissions
 
-from wkhtmltopdf.views import PDFTemplateResponse
 
 from .serializer import proformaItemSerializer, proformaItemMasterSerializer, proformaMasterSerializer
 from .models import proformaItem, proformaItemMaster
 from .dataframe import data_crud
 
-from orderack.models import orderAcknowledgement, orderAcknowledgementHistory
-from orderack.serializer import orderAcknowledgementSerializer, orderAcknowledgementHistorySerializer, orderAckSerializer
 
 
 class DataCrud(APIView):
     permission_classes = (permissions.IsAuthenticated, )
-
     def post(self, request, Format=None):
-
         if True:
             for file in request.FILES:
                 file_name = default_storage.delete(os.path.abspath('static/inputFiles/{}.csv'.format(file)))
@@ -36,6 +30,15 @@ class DataCrud(APIView):
 
             col_names = ["col_" + str(i) for i in range(83)]
             prod_list = pd.read_csv(os.path.abspath('static/inputFiles/prod_line_item.csv'), sep='\t', names=col_names)
+            # prod_list = prod_list.to_dict('records')
+            # # save prod_list into a excel file
+            # df = pd.DataFrame(prod_list)
+            # df.to_excel(os.path.abspath('static/inputFiles/prod_line_item_output.xlsx'), index=False)
+
+            
+            # return Response({
+            #     "status": True,
+            # })
 
             df = pd.DataFrame(prod_list)
             df_list = df["col_0"].tolist()
@@ -484,7 +487,7 @@ class proformaItemMasterViewSet(viewsets.ModelViewSet):
 
 
 class proformaMasterViewSet(viewsets.ModelViewSet):
-    permission_classes = (permissions.IsAuthenticated, )
+    # permission_classes = (permissions.IsAuthenticated, )
     queryset = proformaItemMaster.objects.all()
     serializer_class = proformaMasterSerializer
 
