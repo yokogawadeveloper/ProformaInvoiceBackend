@@ -1,0 +1,176 @@
+ERROR  2024-02-27 10:28:17,926  D:\PerformaInvoice-main\django\venv\lib\site-packages\django\utils\log.py  log  224  21852  Internal Server Error: /order_ack_list/ 
+Traceback (most recent call last):
+  File "D:\PerformaInvoice-main\django\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "D:\PerformaInvoice-main\django\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\PerformaInvoice-main\django\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "D:\PerformaInvoice-main\django\venv\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "D:\PerformaInvoice-main\django\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\PerformaInvoice-main\django\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\PerformaInvoice-main\django\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "D:\PerformaInvoice-main\django\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\PerformaInvoice-main\django\orderack\views.py", line 1305, in list
+    date = datetime.datetime.strptime(end_date, "%Y-%m-%d")
+  File "c:\users\464_0521\appdata\local\programs\python\python39\lib\_strptime.py", line 568, in _strptime_datetime
+    tt, fraction, gmtoff_fraction = _strptime(data_string, format)
+  File "c:\users\464_0521\appdata\local\programs\python\python39\lib\_strptime.py", line 349, in _strptime
+    raise ValueError("time data %r does not match format %r" %
+ValueError: time data 'null' does not match format '%Y-%m-%d'
+ERROR  2024-02-27 10:46:26,835  D:\PerformaInvoice-main\django\venv\lib\site-packages\django\utils\log.py  log  224  22956  Internal Server Error: /get_order_ack/proforma_report_list/ 
+Traceback (most recent call last):
+  File "D:\PerformaInvoice-main\django\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "D:\PerformaInvoice-main\django\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\PerformaInvoice-main\django\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "D:\PerformaInvoice-main\django\venv\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "D:\PerformaInvoice-main\django\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\PerformaInvoice-main\django\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\PerformaInvoice-main\django\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "D:\PerformaInvoice-main\django\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\PerformaInvoice-main\django\orderack\views.py", line 1232, in getOrderListIntoExcel
+    excel = dataListToExcel(data)
+  File "D:\PerformaInvoice-main\django\orderack\export_to_excel.py", line 45, in dataListToExcel
+    df.loc[index, "PO Date"] = datetime.strptime(value['poDate'], '%d-%m-%Y').date()
+  File "c:\users\464_0521\appdata\local\programs\python\python39\lib\_strptime.py", line 568, in _strptime_datetime
+    tt, fraction, gmtoff_fraction = _strptime(data_string, format)
+  File "c:\users\464_0521\appdata\local\programs\python\python39\lib\_strptime.py", line 349, in _strptime
+    raise ValueError("time data %r does not match format %r" %
+ValueError: time data '2023-12-14' does not match format '%d-%m-%Y'
+ERROR  2024-02-27 10:46:41,521  D:\PerformaInvoice-main\django\venv\lib\site-packages\django\utils\log.py  log  224  22956  Internal Server Error: /get_order_ack/proforma_report_list/ 
+Traceback (most recent call last):
+  File "D:\PerformaInvoice-main\django\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "D:\PerformaInvoice-main\django\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\PerformaInvoice-main\django\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "D:\PerformaInvoice-main\django\venv\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "D:\PerformaInvoice-main\django\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\PerformaInvoice-main\django\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\PerformaInvoice-main\django\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "D:\PerformaInvoice-main\django\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\PerformaInvoice-main\django\orderack\views.py", line 1232, in getOrderListIntoExcel
+    excel = dataListToExcel(data)
+  File "D:\PerformaInvoice-main\django\orderack\export_to_excel.py", line 45, in dataListToExcel
+    df.loc[index, "PO Date"] = datetime.strptime(value['poDate'], '%d-%m-%Y').date()
+  File "c:\users\464_0521\appdata\local\programs\python\python39\lib\_strptime.py", line 568, in _strptime_datetime
+    tt, fraction, gmtoff_fraction = _strptime(data_string, format)
+  File "c:\users\464_0521\appdata\local\programs\python\python39\lib\_strptime.py", line 349, in _strptime
+    raise ValueError("time data %r does not match format %r" %
+ValueError: time data '2023-12-14' does not match format '%d-%m-%Y'
+ERROR  2024-02-27 10:54:20,319  D:\PerformaInvoice-main\django\venv\lib\site-packages\django\utils\log.py  log  224  24176  Internal Server Error: /get_order_ack/proforma_report_list/ 
+Traceback (most recent call last):
+  File "D:\PerformaInvoice-main\django\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "D:\PerformaInvoice-main\django\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\PerformaInvoice-main\django\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "D:\PerformaInvoice-main\django\venv\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "D:\PerformaInvoice-main\django\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\PerformaInvoice-main\django\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\PerformaInvoice-main\django\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "D:\PerformaInvoice-main\django\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\PerformaInvoice-main\django\orderack\views.py", line 1232, in getOrderListIntoExcel
+    excel = dataListToExcel(data)
+  File "D:\PerformaInvoice-main\django\orderack\export_to_excel.py", line 45, in dataListToExcel
+    df.loc[index, "PO Date"] = datetime.strptime(value['poDate'], '%d-%m-%Y').date()
+  File "c:\users\464_0521\appdata\local\programs\python\python39\lib\_strptime.py", line 568, in _strptime_datetime
+    tt, fraction, gmtoff_fraction = _strptime(data_string, format)
+  File "c:\users\464_0521\appdata\local\programs\python\python39\lib\_strptime.py", line 349, in _strptime
+    raise ValueError("time data %r does not match format %r" %
+ValueError: time data '2023-12-14' does not match format '%d-%m-%Y'
+ERROR  2024-02-27 10:59:01,396  D:\PerformaInvoice-main\django\venv\lib\site-packages\django\utils\log.py  log  224  19244  Internal Server Error: /get_order_ack/proforma_report_list/ 
+Traceback (most recent call last):
+  File "D:\PerformaInvoice-main\django\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "D:\PerformaInvoice-main\django\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\PerformaInvoice-main\django\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "D:\PerformaInvoice-main\django\venv\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "D:\PerformaInvoice-main\django\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\PerformaInvoice-main\django\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\PerformaInvoice-main\django\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "D:\PerformaInvoice-main\django\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\PerformaInvoice-main\django\orderack\views.py", line 1232, in getOrderListIntoExcel
+    excel = dataListToExcel(data)
+  File "D:\PerformaInvoice-main\django\orderack\export_to_excel.py", line 191, in dataListToExcel
+    df.loc[index, "PO Date"] = datetime.strptime(value['poDate'], '%d-%m-%Y').date()  # Adding PO Date
+  File "c:\users\464_0521\appdata\local\programs\python\python39\lib\_strptime.py", line 568, in _strptime_datetime
+    tt, fraction, gmtoff_fraction = _strptime(data_string, format)
+  File "c:\users\464_0521\appdata\local\programs\python\python39\lib\_strptime.py", line 349, in _strptime
+    raise ValueError("time data %r does not match format %r" %
+ValueError: time data '2023-12-14' does not match format '%d-%m-%Y'
+ERROR  2024-02-27 10:59:32,681  D:\PerformaInvoice-main\django\venv\lib\site-packages\django\utils\log.py  log  224  19244  Internal Server Error: /get_order_ack/proforma_report_list/ 
+Traceback (most recent call last):
+  File "D:\PerformaInvoice-main\django\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "D:\PerformaInvoice-main\django\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\PerformaInvoice-main\django\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "D:\PerformaInvoice-main\django\venv\lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "D:\PerformaInvoice-main\django\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\PerformaInvoice-main\django\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\PerformaInvoice-main\django\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "D:\PerformaInvoice-main\django\venv\lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\PerformaInvoice-main\django\orderack\views.py", line 1232, in getOrderListIntoExcel
+    excel = dataListToExcel(data)
+  File "D:\PerformaInvoice-main\django\orderack\export_to_excel.py", line 191, in dataListToExcel
+    df.loc[index, "PO Date"] = datetime.strptime(value['poDate'], '%d-%m-%Y').date()  # Adding PO Date
+  File "c:\users\464_0521\appdata\local\programs\python\python39\lib\_strptime.py", line 568, in _strptime_datetime
+    tt, fraction, gmtoff_fraction = _strptime(data_string, format)
+  File "c:\users\464_0521\appdata\local\programs\python\python39\lib\_strptime.py", line 349, in _strptime
+    raise ValueError("time data %r does not match format %r" %
+ValueError: time data '2023-12-14' does not match format '%d-%m-%Y'
+WARNING  2024-02-27 11:28:24,468  D:\PerformaInvoice-main\django\venv\lib\site-packages\django\utils\log.py  log  224  26212  Unauthorized: /user_list/ 
+
+WARNING  2024-02-27 11:28:24,475  D:\PerformaInvoice-main\django\venv\lib\site-packages\django\utils\log.py  log  224  26208  Unauthorized: /category_master_list/ 
+
+WARNING  2024-02-27 11:28:24,476  D:\PerformaInvoice-main\django\venv\lib\site-packages\django\utils\log.py  log  224  26196  Unauthorized: /region_master_list/ 
+
+WARNING  2024-02-27 11:28:24,476  D:\PerformaInvoice-main\django\venv\lib\site-packages\django\utils\log.py  log  224  26200  Unauthorized: /projectmanager_master_list/ 
+
+WARNING  2024-02-27 11:28:24,476  D:\PerformaInvoice-main\django\venv\lib\site-packages\django\utils\log.py  log  224  26224  Unauthorized: /proforma_master_list/39/ 
+
+WARNING  2024-02-27 11:28:24,491  D:\PerformaInvoice-main\django\venv\lib\site-packages\django\utils\log.py  log  224  25704  Unauthorized: /division_master_list/ 
+
+WARNING  2024-02-27 11:34:56,246  D:\PerformaInvoice-main\django\venv\lib\site-packages\django\utils\log.py  log  224  25704  Not Found: /get_order_ack/print_sbi_bank/12342 
+
+WARNING  2024-02-27 11:35:19,601  D:\PerformaInvoice-main\django\venv\lib\site-packages\django\utils\log.py  log  224  25704  Not Found: /get_order_ack/print_sbi_bank/12342 
+

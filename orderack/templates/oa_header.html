@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <style>
+        table, th, td {
+
+          border-collapse: collapse;
+          font-family: Arial;
+        }
+
+       .left{
+            border-left: 1px solid #222;
+        }
+       .right{
+            border-right: 1px solid #222;
+        }
+       .top{
+            border-top: 1px solid #222;
+        }
+       .bottom{
+            border-bottom: 1px solid #222;
+        }
+
+
+        th, td {
+            padding: 10px;
+        }
+
+        div.line-spacing {
+            line-height: 1.6;
+        }
+
+        .gst-pan{
+            width:100%;
+            border: 0px !important;
+        }
+
+        .f12{
+            font-size: 12px;
+        }
+
+        .f14{
+            font-size: 14px;
+        }
+
+        .f16{
+            font-size: 16px;
+        }
+
+        @media all {
+        .page-break { display: none; }
+        }
+
+        @media print {
+        .page-break { display: block; page-break-after: always; }
+        }
+
+        @page:first {
+          #pHeader {margin-top: 25px;}
+          }
+
+    </style>
+
+
+<script type="text/javascript">
+    var pdfInfo = {};
+    var x = document.location.search.substring(1).split('&');
+
+    for (var i in x) { var z = x[i].split('=',2); pdfInfo[z[0]] = unescape(z[1]); }
+
+    function getPdfInfo(PIpdf) {
+        var page = pdfInfo.page || 1;
+
+        if(page == 1) {
+            document.getElementById('pHeader').style.display = 'none';
+            document.getElementById('ph').style.display = 'block';
+
+        } else {
+            document.getElementById('pHeader').style.display = 'block';
+            document.getElementById('ph').style.display = 'none';
+        }
+
+    }
+
+</script>
+</head>
+<body onload="getPdfInfo()">
+        {% if PIpdf == 'with' %}
+            <div id="ph">
+                <img src="{{ pdf_header_logo }}" width="870px" height="180px"/>
+            </div>
+        {% endif %}
+
+        <div id="pHeader">
+<!--            <br><br><br><br><br><br><br><br>-->
+            <div>
+                <div style="font-weight: bold; font-family: Arial; font-size: 18px; text-align: center;">
+                    A&nbsp;&nbsp;N&nbsp;&nbsp;N&nbsp;&nbsp;E&nbsp;&nbsp;X&nbsp;&nbsp;U&nbsp;&nbsp;R&nbsp;&nbsp;E&nbsp;&nbsp;&nbsp;&nbsp;T&nbsp;&nbsp;O&nbsp;&nbsp;&nbsp;&nbsp;O&nbsp;&nbsp;R&nbsp;&nbsp;D&nbsp;&nbsp;E&nbsp;&nbsp;R&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;&nbsp;C&nbsp;&nbsp;K&nbsp;&nbsp;N&nbsp;&nbsp;O&nbsp;&nbsp;W&nbsp;&nbsp;L&nbsp;&nbsp;E&nbsp;&nbsp;D&nbsp;&nbsp;G&nbsp;&nbsp;E&nbsp;&nbsp;M&nbsp;&nbsp;E&nbsp;&nbsp;N&nbsp;&nbsp;T
+                </div>
+            </div>
+
+            <table class="left top right bottom f14" style="width:100%; margin-top:10px;" align="center">
+            <thead>
+                <tr style="height: 100px;">
+                    <td style='text-align: left;'>
+                        <div class="line-spacing">
+                            <span>ORDER ACKNOWLEDGEMENT NO:&nbsp;{{DocNo}}-{{RevNo}}</span>&nbsp;&nbsp;<span>DATED:&nbsp;{{TodayDate}}</span>
+                        </div>
+                        <div class="line-spacing">
+                            {% if Party_Address == 'enduseraddress' %}
+                                <span>CUSTOMER CODE:&nbsp;{{EndUserCode}}</span>
+                            {% endif %}
+                            {% if Party_Address == 'shiptoparty' %}
+                                <span>CUSTOMER CODE:&nbsp;{{Shiptocode}}</span>
+                            {% endif %}
+                            {% if Party_Address == 'soldtoparty' %}
+                                <span>CUSTOMER CODE:&nbsp;{{SoldtoCode}}</span>
+                            {% endif %}
+                            {% if Party_Address == 'billtoparty' %}
+                                <span>CUSTOMER CODE:&nbsp;{{Billtocode}}</span>
+                            {% endif %}
+
+                            &nbsp;&nbsp;
+                            <span>CUSTOMER:&nbsp;{{cust_consignee}}</span>
+                        </div>
+                        <div class="line-spacing">
+                            <span>PO NO.&nbsp;{{PONo}}</span>&nbsp;&nbsp;<span>DT.&nbsp;{{PoDate}}</span>
+                        </div>
+                    </td>
+                </tr>
+            </thead>
+            </table>
+        </div>
+</body>
+</html>

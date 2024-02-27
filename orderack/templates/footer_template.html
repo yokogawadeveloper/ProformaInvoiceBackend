@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        table, th, td {
+
+          border-collapse: collapse;
+          font-family: Arial;
+        }
+
+       .left{
+            border-left: 1px solid #222;
+        }
+       .right{
+            border-right: 1px solid #222;
+        }
+       .top{
+            border-top: 1px solid #222;
+        }
+       .bottom{
+            border-bottom: 1px solid #222;
+        }
+
+
+        th, td {
+            padding: 10px;
+        }
+
+        div.line-spacing {
+            line-height: 1.6;
+        }
+
+        .gst-pan{
+            width:100%;
+            border: 0px !important;
+        }
+
+        .f12{
+            font-size: 12px;
+        }
+
+        .f14{
+            font-size: 14px;
+        }
+
+        .f16{
+            font-size: 16px;
+        }
+
+
+            @page { size: 210mm 155mm }
+            *{margin:0;padding:0;}
+            body { margin: 0; padding: 0; }
+
+    </style>
+
+    <script type="text/javascript">
+    var pdfInfo = {};
+    var x = document.location.search.substring(1).split('&');
+    for (var i in x) {
+        var z = x[i].split('=', 2);
+        pdfInfo[z[0]] = unescape(z[1]);
+    }
+
+    function getPdfInfo() {
+        var page = pdfInfo.page || 1;
+
+        if(page == 1) {
+            document.getElementById('pFooter').style.display = 'none';
+        }
+        if (vars['page'] == vars['topage']) {
+            document.querySelectorAll('.extra')[0].textContent = 'extra text here';
+        }
+       }
+    };
+    </script>
+</head>
+<body onload="getPdfInfo()">
+    <div id="pFooter">
+        <br><br><br><br>
+        <div class="bottom extra" style="margin: 0px; padding: 0px;"></div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    <style>
+        table, th, td {
+
+          border-collapse: collapse;
+          font-family: Arial;
+        }
+
+       .left{
+            border-left: 1px solid #222;
+        }
+       .right{
+            border-right: 1px solid #222;
+        }
+       .top{
+            border-top: 1px solid #222;
+        }
+       .bottom{
+            border-bottom: 1px solid #222;
+        }
+
+
+        th, td {
+            padding: 10px;
+        }
+
+        div.line-spacing {
+            line-height: 1.6;
+        }
+
+        .gst-pan{
+            width:100%;
+            border: 0px !important;
+        }
+
+        .f12{
+            font-size: 12px;
+        }
+
+        .f14{
+            font-size: 14px;
+        }
+
+        .f16{
+            font-size: 16px;
+        }
+
+        .f18{
+            font-size: 17px;
+            line-height: 0.9;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<!--    <br><br><br><br><br><br><br><br>-->
+
+    <table class="gst-pan f14" align="center">
+        <tr>
+            <td rowspan="1" style="width: 50%; border:none;"></td>
+            <td style="border:none;">
+                <span >GSTIN :&nbsp;&nbsp;</span>29AAACY0840P1ZV &nbsp;&nbsp;
+                <span >PAN :&nbsp;&nbsp;</span>AAACY0840P
+            </td>
+        </tr>
+    </table>
+
+    <table class="left top right bottom" style="width:100%" align="center">
+        <thead>
+            <tr style="background-color: #ddd;">
+                <th class="left top right bottom" colspan="2" style="font-size: 20px; padding: 2px;">
+                    P&nbsp;R&nbsp;O&nbsp;F&nbsp;O&nbsp;R&nbsp;M&nbsp;A&nbsp;&nbsp;&nbsp;&nbsp;I&nbsp;N&nbsp;V&nbsp;O&nbsp;I&nbsp;C&nbsp;E
+                </th>
+            </tr>
+        </thead>
+    </table>
+
+<!--    <br>-->
+
+    <table class="left top right bottom" style="width:100%; margin-top: 5px;" align="center">
+        <tbody>
+            <tr>
+                {% if Party_Address == 'enduseraddress' %}
+                    <td class="left top right bottom" rowspan="2" style="width: 50%; font-size:12px; padding:0px; vertical-align: top;">
+                        <div class="line-spacing" style="letter-spacing: 1px;">
+                            <span style="font-weight: bold">Bill To:&nbsp;{{EndUserCode}}</span>
+<!--                            <div style="font-weight: bold">{{EndUserCode}}</div>-->
+                            <div>{{EndUserAddress_head | linebreaksbr}}</div>
+                        </div>
+                    </td>
+                {% endif %}
+                {% if Party_Address == 'shiptoparty' %}
+                    <td class="left top right bottom" rowspan="2" style="width: 50%; font-size:12px; padding:0px; vertical-align: top;">
+                        <div class="line-spacing" style="letter-spacing: 1px;">
+                            <span style="font-weight: bold">Bill To:&nbsp;{{Shiptocode}}</span>
+<!--                            <div style="font-weight: bold">{{Shiptocode}}</div>-->
+                            <div>{{Shiptoaddress_head | linebreaksbr}}</div>
+                        </div>
+                    </td>
+                {% endif %}
+                {% if Party_Address == 'soldtoparty' %}
+                    <td class="left top right bottom" rowspan="2" style="width: 50%; font-size:12px; padding:0px; vertical-align: top;">
+                        <div class="line-spacing" style="letter-spacing: 1px;">
+                            <span style="font-weight: bold">Bill To:&nbsp;{{SoldtoCode}}</span>
+<!--                            <div style="font-weight: bold">{{SoldtoCode}}</div>-->
+                            <div>{{SoldToAddress_head | linebreaksbr}}</div>
+                        </div>
+                    </td>
+                {% endif %}
+                {% if Party_Address == 'billtoparty' %}
+                    <td class="left top right bottom" rowspan="2" style="width: 50%; font-size:12px; padding:0px; vertical-align: top;">
+                        <div class="line-spacing" style="letter-spacing: 1px;">
+                            <span style="font-weight: bold">Bill To:&nbsp;{{Billtocode}}</span>
+<!--                            <div style="font-weight: bold">{{Billtocode}}</div>-->
+                            <div>{{Billtoaddress_head | linebreaksbr}}</div>
+                        </div>
+                    </td>
+                {% endif %}
+                <td class="left top right bottom f12" style="padding:2px;">
+                    <div class="line-spacing" style="letter-spacing: 1px;">
+                        <div>PROFORMA INVOICE NO :{{Sale_Order_No}}</div>
+                        <div>
+                            <span>DATE :{{PI_date}}</span>&nbsp;&nbsp;
+                             <!-- {% if MatReadyDate != None %}
+                            <span style="color: red; font-size: 12px;"><b>MATERIAL READINESS DATE :&nbsp;{{MatReadyDate}}</b></span>
+                            {% endif %} -->
+                        </div>
+                        <!-- <div>
+                            <span>Location :{{region}}</span>&nbsp;&nbsp;
+                        </div> -->
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="left top right bottom f12" style="padding:0px; vertical-align: top;">
+                    <div class="line-spacing" style="letter-spacing: 1px;">
+                        <div style="font-weight: bold; margin-bottom: 5px;">CUSTOMER PO DETAILS</div>
+                        <div>ORDER NO :{{PONo}}</div>
+                        <div>ORDER DATE :{{PoDate}}</div>
+                        <div>SALE ORDER NO : {{DocNo}}</div>
+                        <div>SALES OFFICE : {{Sales_Office}}</div>
+                        <div>PROJECT MANAGER : {{Project_Manager}}</div>
+                        {% if JobCode != null %}
+                            <div>JOB CODE : {{JobCode}}</div>
+                        {% endif %}
+                        {% if PI_Remarks != null %}
+                            <div>REMARKS : {{PI_Remarks}}</div>
+                        {% endif %}
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table class="left top right f14" style="width:100%; margin-top:10px" align="center">
+        <thead>
+            <tr>
+                <th style='width: 10%; text-align: left;'>SL NO</th>
+                <th style='width: 45%; text-align: left;'>MATERIAL NO./DESCRIPTION</th>
+                <th style='width: 15%; text-align: left;'>QTY/UOM</th>
+                <th style='width: 15%; text-align: right;'>UNIT RATE</th>
+                <th style='width: 15%; text-align: right;'>AMOUNT({{ unitType }})</th>
+            </tr>
+        </thead>
+    </table>
+
+    <table class="f12" style="width:100%;">
+        <tr>
+            <td class="left top right bottom line-spacing" style="height: 400px; padding: 0px;" valign="top">
+                <table style="width:100%; margin-top: 2px;border: none;letter-spacing: 1px;" align="center" border="0">
+                    <tbody>
+                        {% if Type == "M" %}
+                            {% if length < 4 %}
+                                {% for item in order|dictsort:'Revno' %}
+                                    <tr>
+                                        <td style='width: 10%;text-align: left; vertical-align: top;'>
+                                            {% if item.counter != 0 %}
+                                                <div>{{item.counter}}</div>
+                                            {% endif %}
+                                        </td>
+                                        <td style='width: 45%;'>
+                                            <div>{{item.Description}}</div>
+                                            <div>
+                                                {% if item.PartName == null %}
+                                                    <span></span>
+                                                {% else %}
+                                                    <span>{{item.PartName}}</span>
+                                                {% endif %}
+                                            </div>
+                                            <div>
+                                                {% if item.CusPartSlno == null %}
+                                                    <span></span>
+                                                {% else %}
+                                                    <span>{{item.CusPartSlno}}</span>
+                                                {% endif %}
+                                            </div>
+                                            <div>
+                                                {% if item.CusPartNo == null %}
+                                                    <span></span>
+                                                {% else %}
+                                                    <span>{{item.CusPartNo}}</span>
+                                                {% endif %}
+                                            </div>
+                                            <div>
+                                                {% if item.HSN == null %}
+                                                    <span></span>
+                                                {% else %}
+                                                    HSN :<span>{{item.HSN}}</span>
+                                                {% endif %}
+                                            </div>
+                                            {% if item.Type == "M" %}
+                                                {% if item.PI_Discount != null and item.PI_Discount != 0 %}
+                                                    <div style="margin-left: 250px;">
+                                                        Discount:&nbsp;{{item.Discount_Percent}}%&nbsp;{{item.PI_Discount|floatformat:"2"}}
+                                                    </div>
+                                                {% endif %}
+                                                {% if item.PI_Pf != null and item.PI_Pf != 0 %}
+                                                    <div style="margin-left: 250px;">
+                                                        P&F:&nbsp;{{item.PF_Percent}}%&nbsp;{{item.PI_Pf|floatformat:"2"}}
+                                                    </div>
+                                                {% endif %}
+                                                {% if item.PI_Freight != null and item.PI_Freight != 0 %}
+                                                    <div style="margin-left: 250px;">
+                                                        Freight:&nbsp;{{item.Freight_Percent}}%&nbsp;{{item.PI_Freight|floatformat:"2"}}
+                                                    </div>
+                                                {% endif %}
+                                                {% if item.IGST != null %}
+                                                    <div style="margin-left: 250px;">
+                                                        IGST:&nbsp;{{item.IGST|floatformat}}%&nbsp;{{item.PI_IGST|floatformat:"2"}}
+                                                    </div>
+                                                {% endif %}
+                                                {% if item.SGST != null or item.CGST != null %}
+                                                    <div style="margin-left: 250px;">
+                                                        CGST:&nbsp;{{item.CGST|floatformat}}%&nbsp;{{item.PI_CGST|floatformat:"2"}}
+                                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                                        SGST:&nbsp;{{item.SGST|floatformat}}%&nbsp;{{item.PI_SGST|floatformat:"2"}}
+                                                    </div>
+                                                {% endif %}
+                                            {% endif %}
+
+                                            {% if item.Type == "A" %}
+                                                {% if item.IGST != null and item.IGST != 0 %}
+                                                    <div style="margin-left: 250px;">
+                                                        IGST:&nbsp;{{item.IGST}}%&nbsp;{{item.PI_IGST|floatformat:"2"}}
+                                                    </div>
+                                                {% endif %}
+                                                {% if item.SGST != null and item.SGST != 0 or item.CGST != null and item.CGST != 0 %}
+                                                    <div style="margin-left: 250px;">
+                                                        CGST:&nbsp;{{item.CGST}}%&nbsp;{{item.PI_CGST|floatformat:"2"}}
+                                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                                        SGST:&nbsp;{{item.SGST}}%&nbsp;{{item.PI_SGST|floatformat:"2"}}
+                                                    </div>
+                                                {% endif %}
+                                            {% endif %}
+                                        </td>
+                                        <td style='width: 15%;text-align: left;vertical-align: top;'>{{item.PI_Qty}}&nbsp;&nbsp;
+                                            {% if item.UOM == null %}
+                                                <span></span>
+                                            {% else %}
+                                                <span>{{item.UOM}}</span>
+                                            {% endif %}
+                                        </td>
+                                        <td style='width: 15%;text-align: right;vertical-align: top;'>
+                                            {% if item.UnitPrice == null or item.UnitPrice == 0 %}
+                                                <span></span>
+                                            {% else %}
+                                                <span>{{item.UnitPrice|floatformat:"2"}}</span>
+                                            {% endif %}
+                                        </td>
+                                        <td style="width: 15%;text-align: right;vertical-align: top;">
+                                            {% if item.MultiplyUnitPrice == 0 %}
+                                                <span></span>
+                                            {% endif %}
+                                            {% if item.MultiplyUnitPrice != 0 %}
+                                                <span>{{item.MultiplyUnitPrice|floatformat:"2"}}</span>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            {% else %}
+                                <tr>
+                                    <td style='border:none; text-align: left; padding-top: 30px;'>AS PER ANNEXURE SHEET</td>
+                                    <td style='border:none; text-align: center;'></td>
+                                    <td style='border:none; text-align: center;'></td>
+                                    <td style='border:none; text-align: center;'></td>
+                                    <td style='border:none; text-align: center;'></td>
+                                </tr>
+                            {% endif %}
+                        {% endif %}
+
+                        {% if Type == "A" %}
+                            {% for item in order %}
+                                <tr>
+                                    <td style='width: 10%;text-align: left; vertical-align: top;'>{{forloop.counter}}</td>
+                                    <td style='width: 45%;'>
+                                        <div>{{item.Description}}</div>
+                                        <br><br>
+                                        <div>{{item.PercentonAmt}}</div>
+                                        <br><br>
+                                        <div>{{item.APBGDetails}}</div>
+                                    </td>
+                                    <td style='width: 15%;text-align: center;'>{{item.PI_Qty}}&nbsp;&nbsp;
+                                        {% if item.UOM == null %}
+                                            <span>-</span>
+                                        {% else %}
+                                            <span>{{item.UOM}}</span>
+                                        {% endif %}
+                                    </td>
+                                    <td style='width: 15%;text-align: right;'>{{item.UnitPrice|floatformat:"2"}}</td>
+                                    <td style='width: 15%;text-align: right;'>{{TotalUnitPrice|floatformat:"2"}}</td>
+                                </tr>
+                            {% endfor %}
+                        {% endif %}
+
+                        {% if Type == "R" %}
+                            {% for item in order %}
+                                <tr>
+                                    <td style='width: 10%;text-align: left; vertical-align: top;'>{{forloop.counter}}</td>
+                                    <td style='width: 45%;'>
+                                        <div>{{item.Description}}</div>
+                                        <br><br>
+                                        <div>{{item.PercentonAmt}}</div>
+                                        <br><br>
+                                        <div>{{item.APBGDetails}}</div>
+                                    </td>
+                                    <td style='width: 15%;text-align: center;'>{{item.PI_Qty}}&nbsp;&nbsp;
+                                        {% if item.UOM == null %}
+                                            <span>-</span>
+                                        {% else %}
+                                            <span>{{item.UOM}}</span>
+                                        {% endif %}
+                                    </td>
+                                    <td style='width: 15%;text-align: right;'>{{item.UnitPrice|floatformat:"2"}}</td>
+                                    <td style='width: 15%;text-align: right;'>{{TotalUnitPrice|floatformat:"2"}}</td>
+                                </tr>
+                            {% endfor %}
+                        {% endif %}
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+    <!-- change start -->
+    <table class="left top right bottom f18" style="width:100%;">
+        <tbody>
+            <tr>
+                <td class="left top right bottom f18" style="padding:0px; width:50%; vertical-align: top;">
+                    <table class="f18" style="width:100%;">
+                        <tbody>
+                        <tr>
+                         {% if MatReadyDate != None %}
+                            <td style='text-align: left;color:red;font-family:Arial'>Material Readiness @ YIL Ex-work =&nbsp;<b>{{MatReadyDate}}</b></td>
+                        {% endif %}
+                        </tr>
+                        <tr>
+                            <td style='text-align: left;color:red;font-family:Arial;line-height: 1;'>Remarks : For the contracts/PO wherein shipment date is linked to the payment receipt (e.g Proforma Payment), Contractual Delivery Date (CDD) exworks YIL, shall stand revised to 5 working days from the receipt of the payment.</td>
+                        </tr>
+                    </tbody>
+                    </table>
+                </td>
+                <td class="left top right bottom f12" style="padding:0px; width:50%; vertical-align: top;">
+                    <table class="f14" style="width:100%;">
+                        <tbody>
+                            {% if Type == "M" %}
+                            <tr>
+                                <td style='text-align: left; padding:3px; letter-spacing: 1px; font-weight: bold;'>SUBTOTAL</td>
+                                <td style='text-align: right;font-weight: bold;'>{{TotalUnitPriceValue|floatformat:"2"}}</td>
+                            </tr>
+                            {% endif %}
+                            {% if Type == "A" %}
+                            <tr>
+                                <td style='text-align: left; padding:3px; letter-spacing: 1px; font-weight: bold;'>SUBTOTAL</td>
+                                <td style='text-align: right;font-weight: bold;'>{{TotalUnitPrice|floatformat:"2"}}</td>
+                            </tr>
+                            {% endif %}
+                            {% if Type == "R" %}
+                            <tr>
+                                <td style='text-align: left; padding:3px; letter-spacing: 1px; font-weight: bold;'>SUBTOTAL</td>
+                                <td style='text-align: right;font-weight: bold;'>{{TotalUnitPrice|floatformat:"2"}}</td>
+                            </tr>
+                            {% endif %}
+
+                            {% if PI_TotalDiscount == null %}
+                            <tr>
+                                <td style='text-align: left; font-weight: bold;'>&nbsp;&nbsp;(a)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Discount :</td>
+                                <td style='text-align: right;font-weight: bold;'>0.00</td>
+                            </tr>
+                            {% endif %}
+                            {% if PI_TotalDiscount != null %}
+                            <tr>
+                                <td style='text-align: left; font-weight: bold;'>&nbsp;&nbsp;(a)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Discount :</td>
+                                <td style='text-align: right;font-weight: bold;'>{{total_discount|floatformat:"2"}}</td>
+                            </tr>
+                            {% endif %}
+
+                            {% if PI_TotalPf == null %}
+                            <tr>
+                                <td style='text-align: left; font-weight: bold;'>&nbsp;&nbsp;(b)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;P&nbsp;&&nbsp;F :</td>
+                                <td style='text-align: right;font-weight: bold;'>0.00</td>
+                            </tr>
+                            {% endif %}
+                            {% if PI_TotalPf != null %}
+                            <tr>
+                                <td style='text-align: left; font-weight: bold;'>&nbsp;&nbsp;(b)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;P&nbsp;&&nbsp;F :</td>
+                                <td style='text-align: right;font-weight: bold;'>{{PI_TotalPf|floatformat:"2"}}</td>
+                            </tr>
+                            {% endif %}
+
+                            {% if PI_TotalFreight == null %}
+                            <tr>
+                                <td style='text-align: left; font-weight: bold;'>&nbsp;&nbsp;(c)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Freight :</td>
+                                <td style='text-align: right;font-weight: bold;'>0.00</td>
+                            </tr>
+                            {% endif %}
+                            {% if PI_TotalFreight != null %}
+                            <tr>
+                                <td style='text-align: left; font-weight: bold;'>&nbsp;&nbsp;(c)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Freight :</td>
+                                <td style='text-align: right;font-weight: bold;'>{{PI_TotalFreight|floatformat:"2"}}</td>
+                            </tr>
+                            {% endif %}
+
+                            {% if PI_TotalCGST != null and PI_TotalCGST != 0 %}
+                                <tr>
+                                    <td style='text-align: left;font-weight: bold;'>&nbsp;&nbsp;(d)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CGST@{{CGST_Percent|floatformat}}% :</td>
+                                    {% if Type == "M" %}
+                                        <td style='text-align: right;font-weight: bold;'>{{total_order_CGST|floatformat:"2"}}</td>
+                                    {% endif %}
+                                    {% if Type == "A" %}
+                                        <td style='text-align: right;font-weight: bold;'>{{PI_TotalCGST|floatformat:"2"}}</td>
+                                    {% endif %}
+                                </tr>
+                            {% endif %}
+
+                            {% if PI_TotalSGST != null and PI_TotalSGST != 0 %}
+                                <tr>
+                                    <td style='text-align: left;font-weight: bold;'>&nbsp;&nbsp;(e)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SGST@{{SGST_Percent|floatformat}}% :</td>
+                                    {% if Type == "M" %}
+                                    <td style='text-align: right;font-weight: bold;'>{{total_order_SGST|floatformat:"2"}}</td>
+                                    {% endif %}
+                                    {% if Type == "A" %}
+                                        <td style='text-align: right;font-weight: bold;'>{{PI_TotalSGST|floatformat:"2"}}</td>
+                                    {% endif %}
+                                </tr>
+                                    {% if TCSAmount != null and TCSAmount != 0 %}
+                                    <tr>
+                                        <td style='text-align: left;font-weight: bold;'>&nbsp;&nbsp;(f)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TCS:{{TCS}}%</td>
+                                        <td style='text-align: right;font-weight: bold;'>{{TCSAmount}}</td>
+                                    </tr>
+                                    {% endif %}
+                            {% endif %}
+
+                            {% if PI_TotalIGST != null and PI_TotalIGST != 0 %}
+                            <tr>
+                                <td style='text-align: left;font-weight: bold;'>&nbsp;&nbsp;(d)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IGST@{{IGST_Percent|floatformat}}% :</td>
+                                    {% if Type == "M" %}
+                                        <td style='text-align: right;font-weight: bold;'>{{total_order_IGST|floatformat:"2"}}</td>
+                                    {% endif %}
+                                    {% if Type == "A" %}
+                                        <td style='text-align: right;font-weight: bold;'>{{PI_TotalIGST|floatformat:"2"}}</td>
+                                    {% endif %}
+                            </tr>
+                                {% if TCSAmount != null and TCSAmount != 0 %}
+                                <tr>
+                                    <td style='text-align: left;font-weight: bold;'>&nbsp;&nbsp;(e)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TCS:{{TCS}}%</td>
+                                    <td style='text-align: right;font-weight: bold;'>{{TCSAmount}}</td>
+                                </tr>
+                                {% endif %}
+                            {% endif %}
+
+                            {% if zero_CGST == 0 and zero_CGST_value == 0 %}
+                            <tr>
+                                <td style='text-align: left; font-weight: bold;'>&nbsp;&nbsp;(d)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CGST@0% :</td>
+                                <td style='text-align: right;font-weight: bold;'>{{total_order_CGST|floatformat:"2"}}</td>
+                            </tr>
+                            {% endif %}
+
+                            {% if zero_SGST == 0 and zero_SGST_value == 0 %}
+                            <tr>
+                                <td style='text-align: left; font-weight: bold;'>&nbsp;&nbsp;(e)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SGST@0% :</td>
+                                <td style='text-align: right;font-weight: bold;'>{{total_order_SGST|floatformat:"2"}}</td>
+                            </tr>
+                            {% endif %}
+
+                            {% if zero_IGST == 0 and zero_IGST_value == 0 %}
+                            <tr>
+                                <td style='text-align: left; font-weight: bold;'>&nbsp;&nbsp;(d)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IGST@0% :</td>
+                                <td style='text-align: right;font-weight: bold;'>{{total_order_IGST|floatformat:"2"}}</td>
+                            </tr>
+                            {% endif %}
+
+                            {% if PI_TotalIGST == null and PI_TotalIGST == 0 and PI_TotalSGST == null and PI_TotalSGST == 0  %}
+                                {% if TCSAmount != null and TCSAmount != 0 %}
+                                    <tr>
+                                        <td style='text-align: left; font-weight: bold;'>&nbsp;&nbsp;(d)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TCS:{{TCS}}%</td>
+                                        <td style='text-align: right;font-weight: bold;'>{{TCSAmount}}</td>
+                                    </tr>
+                                {% endif %}
+                            {% endif %}
+
+                            <tr>
+                                {% if Type == "M" %}
+                                    <td style='text-align: left; font-weight: bold;'>TOTAL</td>
+                                    <td style='text-align: right;font-weight: bold;'>{{TotalAmount|floatformat:"2"}}</td>
+                                {% endif %}
+                                {% if Type == "A" %}
+                                    <td style='text-align: left; font-weight: bold;'>TOTAL</td>
+                                    <td style='text-align: right;font-weight: bold;'>{{TotalAmountWithTCS|floatformat:"2"}}</td>
+                                {% endif %}
+                                {% if Type == "R" %}
+                                    <td style='text-align: left; font-weight: bold;'>TOTAL</td>
+                                    <td style='text-align: right;font-weight: bold;'>{{TotalAmountWithTCS|floatformat:"2"}}</td>
+                                {% endif %}
+                            </tr>
+
+                            <tr>
+                                {% if Advance == null %}
+                                    <td style='text-align: left; font-weight: bold;'>&nbsp;&nbsp;(a)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Less:&nbsp;Advance</td>
+                                    <td style='text-align: right; font-weight: bold;'>0.00</td>
+                                {% endif %}
+                                {% if Advance != null %}
+                                    <td style='text-align: left; font-weight: bold;'>&nbsp;&nbsp;(a)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Less:&nbsp;Advance</td>
+                                    <td style='text-align: right; font-weight: bold;'>{{Advance|floatformat:"2"}}</td>
+                                {% endif %}
+                            </tr>
+
+                            <tr>
+                                {% if Retention == null %}
+                                    <td style='text-align: left;font-weight: bold;'>&nbsp;&nbsp;(b)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Less:&nbsp;Retention</td>
+                                    <td style='text-align: right; font-weight: bold;'>0.00</td>
+                                {% endif %}
+                                {% if Retention != null %}
+                                    <td style='text-align: left;font-weight: bold;'>&nbsp;&nbsp;(b)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Less:&nbsp;Retention</td>
+                                    <td style='text-align: right; font-weight: bold;'>{{Retention|floatformat:"2"}}</td>
+                                {% endif %}
+                            </tr>
+
+                            <tr>
+                                {% if TotalAmountWithTCS == null %}
+                                    <td style='text-align: left; padding:3px; letter-spacing: 1px; font-weight: bold;font-size:18px;'>BALANCE</td>
+                                    <td style='text-align: right; padding:3px; font-weight: bold;font-size:18px;'>0.00</td>
+                                {% endif %}
+                                {% if TotalAmountWithTCS != null %}
+                                    <td style='text-align: left; padding:3px; letter-spacing: 1px; font-weight: bold;font-size:18px;'>BALANCE</td>
+                                    <td style='text-align: right; padding:3px; font-weight: bold;font-size:18px;'>{{TotalAmountWithTCS|floatformat:"2"}}</td>
+                                {% endif %}
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <!-- change end -->
+
+    <!-- previous code start -->
+
+    <!-- <table class="left top right bottom f14" style="width:100%;" align="center">
+        <tbody>
+            <tr>
+                {% if Type == "M" %}
+                    <td style='text-align: left; padding:3px; letter-spacing: 1px; font-weight: bold;'>SUBTOTAL</td>
+                    <td style='text-align: right; padding:3px; font-weight: bold;'>{{TotalUnitPriceValue|floatformat:"2"}}</td>
+                {% endif %}
+                {% if Type == "A" %}
+                    <td style='text-align: left; padding:3px; letter-spacing: 1px; font-weight: bold;'>SUBTOTAL</td>
+                    <td style='text-align: right; padding:3px; font-weight: bold;'>{{TotalUnitPrice|floatformat:"2"}}</td>
+                {% endif %}
+                {% if Type == "R" %}
+                    <td style='text-align: left; padding:3px; letter-spacing: 1px; font-weight: bold;'>SUBTOTAL</td>
+                    <td style='text-align: right; padding:3px; font-weight: bold;'>{{TotalUnitPrice|floatformat:"2"}}</td>
+                {% endif %}
+            </tr>
+            <tr>
+                {% if PI_TotalDiscount == null %}
+                    <td style=' text-align: left; padding:3px; font-weight: bold;'>&nbsp;&nbsp;(a)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Discount :</td>
+                    <td style=' text-align: right; padding:3px; font-weight: bold;'>0.00</td>
+                {% endif %}
+                {% if PI_TotalDiscount != null %}
+                    <td style=' text-align: left; padding:3px; font-weight: bold;'>&nbsp;&nbsp;(a)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Discount :</td>
+                    <td style=' text-align: right; padding:3px; font-weight: bold;'>{{total_discount|floatformat:"2"}}</td>
+                {% endif %}
+            </tr>
+            <tr>
+                {% if PI_TotalPf == null %}
+                    <td style=' text-align: left; padding:3px; font-weight: bold;'>&nbsp;&nbsp;(b)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;P&nbsp;&&nbsp;F :</td>
+                    <td style=' text-align: right; padding:3px; font-weight: bold;'>0.00</td>
+                {% endif %}
+                {% if PI_TotalPf != null %}
+                    <td style=' text-align: left; padding:3px; font-weight: bold;'>&nbsp;&nbsp;(b)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;P&nbsp;&&nbsp;F :</td>
+                    <td style=' text-align: right; padding:3px; font-weight: bold;'>{{PI_TotalPf|floatformat:"2"}}</td>
+                {% endif %}
+            </tr>
+            <tr>
+                {% if PI_TotalFreight == null %}
+                    <td style=' text-align: left; padding:3px; font-weight: bold;'>&nbsp;&nbsp;(c)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Freight :</td>
+                    <td style=' text-align: right; padding:3px; font-weight: bold;'>0.00</td>
+                {% endif %}
+                {% if PI_TotalFreight != null %}
+                    <td style=' text-align: left; padding:3px; font-weight: bold;'>&nbsp;&nbsp;(c)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Freight :</td>
+                    <td style=' text-align: right; padding:3px; font-weight: bold;'>{{PI_TotalFreight|floatformat:"2"}}</td>
+                {% endif %}
+            </tr>
+
+            {% if PI_TotalCGST != null and PI_TotalCGST != 0 %}
+                <tr>
+                    <td style=' text-align: left; padding:3px; font-weight: bold;'>&nbsp;&nbsp;(d)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CGST@{{CGST_Percent|floatformat}}% :</td>
+                    {% if Type == "M" %}
+                        <td style=' text-align: right; padding:3px; font-weight: bold;'>{{total_order_CGST|floatformat:"2"}}</td>
+                    {% endif %}
+                    {% if Type == "A" %}
+                        <td style=' text-align: right; padding:3px; font-weight: bold;'>{{PI_TotalCGST|floatformat:"2"}}</td>
+                    {% endif %}
+                </tr>
+            {% endif %}
+
+            {% if PI_TotalSGST != null and PI_TotalSGST != 0 %}
+                <tr>
+                    <td style=' text-align: left; padding:3px; font-weight: bold;'>&nbsp;&nbsp;(e)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SGST@{{SGST_Percent|floatformat}}% :</td>
+                    {% if Type == "M" %}
+                    <td style=' text-align: right; padding:3px; font-weight: bold;'>{{total_order_SGST|floatformat:"2"}}</td>
+                    {% endif %}
+                    {% if Type == "A" %}
+                        <td style=' text-align: right; padding:3px; font-weight: bold;'>{{PI_TotalSGST|floatformat:"2"}}</td>
+                    {% endif %}
+                </tr>
+                     {% if TCSAmount != null and TCSAmount != 0 %}
+                    <tr>
+                        <td style=' text-align: left; padding:3px; font-weight: bold;'>&nbsp;&nbsp;(f)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TCS:{{TCS}}%</td>
+                        <td style=' text-align: right; padding:3px; font-weight: bold;'>{{TCSAmount}}</td>
+                    </tr>
+                    {% endif %}
+            {% endif %}
+
+            {% if PI_TotalIGST != null and PI_TotalIGST != 0 %}
+            <tr>
+                <td style=' text-align: left; padding:3px; font-weight: bold;'>&nbsp;&nbsp;(d)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IGST@{{IGST_Percent|floatformat}}% :</td>
+                    {% if Type == "M" %}
+                        <td style=' text-align: right; padding:3px; font-weight: bold;'>{{total_order_IGST|floatformat:"2"}}</td>
+                    {% endif %}
+                    {% if Type == "A" %}
+                        <td style=' text-align: right; padding:3px; font-weight: bold;'>{{PI_TotalIGST|floatformat:"2"}}</td>
+                    {% endif %}
+            </tr>
+                {% if TCSAmount != null and TCSAmount != 0 %}
+                <tr>
+                    <td style=' text-align: left; padding:3px; font-weight: bold;'>&nbsp;&nbsp;(e)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TCS:{{TCS}}%</td>
+                    <td style=' text-align: right; padding:3px; font-weight: bold;'>{{TCSAmount}}</td>
+                </tr>
+                {% endif %}
+            {% endif %}
+
+
+
+            {% if zero_CGST == 0 and zero_CGST_value == 0 %}
+            <tr>
+                <td style=' text-align: left; padding:3px; font-weight: bold;'>&nbsp;&nbsp;(d)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CGST@0% :</td>
+                <td style=' text-align: right; padding:3px; font-weight: bold;'>{{total_order_CGST|floatformat:"2"}}</td>
+            </tr>
+            {% endif %}
+
+            {% if zero_SGST == 0 and zero_SGST_value == 0 %}
+            <tr>
+                <td style=' text-align: left; padding:3px; font-weight: bold;'>&nbsp;&nbsp;(e)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SGST@0% :</td>
+                <td style=' text-align: right; padding:3px; font-weight: bold;'>{{total_order_SGST|floatformat:"2"}}</td>
+            </tr>
+            {% endif %}
+
+            {% if zero_IGST == 0 and zero_IGST_value == 0 %}
+            <tr>
+                <td style=' text-align: left; padding:3px; font-weight: bold;'>&nbsp;&nbsp;(d)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IGST@0% :</td>
+                <td style=' text-align: right; padding:3px; font-weight: bold;'>{{total_order_IGST|floatformat:"2"}}</td>
+            </tr>
+            {% endif %}
+
+
+            {% if PI_TotalIGST == null and PI_TotalIGST == 0 and PI_TotalSGST == null and PI_TotalSGST == 0  %}
+                {% if TCSAmount != null and TCSAmount != 0 %}
+                    <tr>
+                        <td style=' text-align: left; padding:3px; font-weight: bold;'>&nbsp;&nbsp;(d)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TCS:{{TCS}}%</td>
+                        <td style=' text-align: right; padding:3px; font-weight: bold;'>{{TCSAmount}}</td>
+                    </tr>
+                {% endif %}
+            {% endif %}
+
+
+            <tr>
+                <td style=' text-align: left; padding:3px; font-weight: bold;'></td>
+                <td style=' text-align: right; padding:3px; font-weight: bold;'></td>
+            </tr>
+
+            <tr>
+                {% if Type == "M" %}
+                    <td style=' text-align: left; padding:3px; letter-spacing: 1px; font-weight: bold;'>TOTAL</td>
+                    <td style=' text-align: right; padding:3px; font-weight: bold;'>{{TotalAmount|floatformat:"2"}}</td>
+                {% endif %}
+                {% if Type == "A" %}
+                    <td style=' text-align: left; padding:3px; letter-spacing: 1px; font-weight: bold;'>TOTAL</td>
+                    <td style=' text-align: right; padding:3px; font-weight: bold;'>{{TotalAmountWithTCS|floatformat:"2"}}</td>
+                {% endif %}
+                {% if Type == "R" %}
+                    <td style=' text-align: left; padding:3px; letter-spacing: 1px; font-weight: bold;'>TOTAL</td>
+                    <td style=' text-align: right; padding:3px; font-weight: bold;'>{{TotalAmountWithTCS|floatformat:"2"}}</td>
+                {% endif %}
+            </tr>
+            <tr>
+                {% if Advance == null %}
+                    <td style=' text-align: left; padding:3px; font-weight: bold;'>&nbsp;&nbsp;(a)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Less:&nbsp;Advance</td>
+                    <td style=' text-align: right; padding:3px; font-weight: bold;'>0.00</td>
+                {% endif %}
+                {% if Advance != null %}
+                    <td style=' text-align: left; padding:3px; font-weight: bold;'>&nbsp;&nbsp;(a)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Less:&nbsp;Advance</td>
+                    <td style=' text-align: right; padding:3px; font-weight: bold;'>{{Advance|floatformat:"2"}}</td>
+                {% endif %}
+            </tr>
+            <tr>
+                {% if Retention == null %}
+                    <td style=' text-align: left; padding:3px; font-weight: bold;'>&nbsp;&nbsp;(b)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Less:&nbsp;Retention</td>
+                    <td style=' text-align: right; padding:3px; font-weight: bold;'>0.00</td>
+                {% endif %}
+                {% if Retention != null %}
+                    <td style=' text-align: left; padding:3px; font-weight: bold;'>&nbsp;&nbsp;(b)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Less:&nbsp;Retention</td>
+                    <td style=' text-align: right; padding:3px; font-weight: bold;'>{{Retention|floatformat:"2"}}</td>
+                {% endif %}
+            </tr>
+
+
+            <tr>
+                {% if TotalAmountWithTCS == null %}
+                    <td style=' text-align: left; padding:3px; letter-spacing: 1px; font-weight: bold;'>BALANCE</td>
+                    <td style=' text-align: right; padding:3px; font-weight: bold;'>0.00</td>
+                {% endif %}
+                {% if TotalAmountWithTCS != null %}
+                    <td style=' text-align: left; padding:3px; letter-spacing: 1px; font-weight: bold;'>BALANCE</td>
+                    <td style=' text-align: right; padding:3px; font-weight: bold;'>{{TotalAmountWithTCS|floatformat:"2"}}</td>
+                {% endif %}
+            </tr>
+        </tbody>
+    </table> -->
+
+    <!-- previous code end -->
+
+
+    <!-- <table class="left top right bottom f14" style="width:100%;" align="center">
+        <tbody>
+            <tr>
+                <td class="f12" style="padding: 3px;">
+                    <span style="letter-spacing: 1px;">
+                        Note : For the contracts/PO wherein shipment date is linked to the payment receipt (e.g Proforma Payment), Contractual Delivery Date (CDD) exworks YIL, shall stand revised to 5 working days from the receipt of the payment.
+                    </span>
+                </td>
+            </tr>
+        </tbody>
+    </table> -->
+
+    <table class="left top right bottom f14" style="width:100%;" align="center">
+        <tbody>
+          <tr style="height: 180px; vertical-align: top;">
+              <td class="left top right bottom" style="width: 50%; padding: 0px;">
+                  <div style="padding-top: 0px;"><b>PAYMENT TERMS : </b>{{PaymentTerms}}</div>
+                  <hr style="border: 1px solid #000;">
+                  {% if unitType == 'INR' %}
+                      <div><b>Account Name : </b>Yokogawa India Limited</div>
+                      <div><b>Bank Name & Address : </b>ICICI Bank Ltd., ICICI Bank Towers, 1st Floor, West Wing, 1 Commissariat Road, Bangalore - 560025.</div>
+                      <div><b>Bank A/C No. : </b>000205001388</div>
+                      <div><b>IFSC Code : </b>ICIC0000002</div>
+                  {% endif %}
+                  {% if unitType == 'USD' %}
+                      <div><b>Account Name : </b>Yokogawa India Limited</div>
+                      <div><b>Bank Name & Address : </b>Mizuho Bank Ltd. Bangalore-Devanahalli Branch, 462/440/339, 2nd Floor, Near Jain Temple, N.H.7/4-207. B.B.Road, Vijayapura Cross, Devanahalli Town,
+                      Bangalore Rural District, KA 562 110 INDIA.</div>
+                      <div><b>Bank A/C No. : </b>F10-716-000183</div>
+                      <div><b>SWIFT Code : </b>MHCBINBB</div>
+                  {% endif %}
+              </td>
+            <td class="left top right bottom" style="padding: 0px;">
+                <div><p>CONSIGNEE : {{Consignee}}</p></div>
+                <div style="margin-top: -10px;"><p>CONSIGNOR : YOKOGAWA INDIA LIMITED</p></div>
+                <div style="font-weight: bold; text-align: center;margin-top: -10px;"><p>FOR YOKOGAWA INDIA LIMITED</p></div>
+                <br><br>
+                <div style="font-weight: bold; text-align: center; margin-top: 35px;"><p>AUTHORISED SIGNATURE</p></div>
+            </td>
+          </tr>
+        </tbody>
+    </table>
+
+
+    {% if length > 3 %}
+<!--        <div class="">-->
+<!--            <br><br><br><br><br><br><br><br>-->
+<!--            <div>-->
+<!--                <div style="font-weight: bold; font-family: Arial; font-size: 18px; text-align: center;">-->
+<!--                    A&nbsp;&nbsp;N&nbsp;&nbsp;N&nbsp;&nbsp;E&nbsp;&nbsp;X&nbsp;&nbsp;U&nbsp;&nbsp;R&nbsp;&nbsp;E&nbsp;&nbsp;&nbsp;&nbsp;T&nbsp;&nbsp;O&nbsp;&nbsp;&nbsp;&nbsp;P&nbsp;&nbsp;R&nbsp;&nbsp;O&nbsp;&nbsp;F&nbsp;&nbsp;O&nbsp;&nbsp;R&nbsp;&nbsp;M&nbsp;&nbsp;A&nbsp;&nbsp;&nbsp;&nbsp;I&nbsp;&nbsp;N&nbsp;&nbsp;V&nbsp;&nbsp;O&nbsp;&nbsp;I&nbsp;&nbsp;C&nbsp;&nbsp;E-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <table class="left top right f14" style="width:100%; margin-top:10px;" align="center">-->
+<!--            <thead>-->
+<!--                <tr style="height: 100px;">-->
+<!--                    <td style='text-align: left;'>-->
+<!--                        <div class="line-spacing">-->
+<!--                            <span>PROFORMA INVOICE NO:&nbsp;2007641303-1</span>&nbsp;&nbsp;<span>DATE:&nbsp;11/10/2021</span>-->
+<!--                        </div>-->
+<!--                        <div class="line-spacing">-->
+<!--                            <span>CUSTOMER CODE:&nbsp;( 200256110 ):</span>&nbsp;&nbsp;<span>CUSTOMER:&nbsp;TECHNO SOLUTIONS (PVT) LTD</span>-->
+<!--                        </div>-->
+<!--                        <div class="line-spacing">-->
+<!--                            <span>PO NO:&nbsp;YIL SP CIBD 006-21</span>&nbsp;&nbsp;<span>DATE:&nbsp;03/08/2021</span>-->
+<!--                        </div>-->
+<!--                    </td>-->
+<!--                </tr>-->
+<!--            </thead>-->
+<!--            </table>-->
+<!--        </div>-->
+
+        <table class="left right f14" style="width:100%;" align="center">
+            <thead>
+                <tr style="height: 100px;">
+                    <th style='width: 10%; text-align: left;'>SL NO</th>
+                    <th style='width: 45%; text-align: left;'>MATERIAL NO./DESCRIPTION</th>
+                    <th style='width: 15%; text-align: left;'>QTY/UOM</th>
+                    <th style='width: 15%; text-align: right;'>UNIT RATE</th>
+                    <th style='width: 15%; text-align: right;'>AMOUNT({{ unitType }}) </th>
+                </tr>
+            </thead>
+        </table>
+
+        <table class="f12" style="width:100%;" align="center">
+            <tr>
+                <td class="left top right bottom line-spacing" style="padding: 0px;" valign="top">
+                    <table style="width:100%; margin-top: 2px;border: none;letter-spacing: 1px;" align="center" border="0">
+                        <tbody>
+                            <tr>
+                                {% for item in order|dictsort:'Revno' %}
+                                    <tr class="break-before">
+                                        <td style='width: 10%;text-align: left; vertical-align: top;'>
+                                            {% if item.counter != 0 %}
+                                                <div>{{item.counter}}</div>
+                                            {% endif %}
+                                        </td>
+                                        <td style='width: 45%;'>
+                                            <div>{{item.Description}}</div>
+                                            <div>
+                                                {% if item.PartName == null %}
+                                                    <span></span>
+                                                {% else %}
+                                                    <span>{{item.PartName}}</span>
+                                                {% endif %}
+                                            </div>
+                                            <div>
+                                                {% if item.CusPartSlno == null %}
+                                                    <span></span>
+                                                {% else %}
+                                                    <span>{{item.CusPartSlno}}</span>
+                                                {% endif %}
+                                            </div>
+                                            <div>
+                                                {% if item.CusPartNo == null %}
+                                                    <span></span>
+                                                {% else %}
+                                                    <span>{{item.CusPartNo}}</span>
+                                                {% endif %}
+                                            </div>
+                                            <div>
+                                                {% if item.HSN == null %}
+                                                    <span></span>
+                                                {% else %}
+                                                    HSN :<span>{{item.HSN}}</span>
+                                                {% endif %}
+                                            </div>
+                                            {% if item.Type == "M" %}
+                                                {% if item.PI_Discount != null and item.PI_Discount != 0 %}
+                                                    <div style="margin-left: 250px;">
+                                                        Discount:&nbsp;{{item.Discount_Percent}}%&nbsp;{{item.PI_Discount|floatformat:"2"}}
+                                                    </div>
+                                                {% endif %}
+                                                {% if item.PI_Pf != null and item.PI_Pf != 0 %}
+                                                    <div style="margin-left: 250px;">
+                                                        P&F:&nbsp;{{item.PF_Percent}}%&nbsp;{{item.PI_Pf|floatformat:"2"}}
+                                                    </div>
+                                                {% endif %}
+                                                {% if item.PI_Freight != null and item.PI_Freight != 0 %}
+                                                    <div style="margin-left: 250px;">
+                                                        Freight:&nbsp;{{item.Freight_Percent}}%&nbsp;{{item.PI_Freight|floatformat:"2"}}
+                                                    </div>
+                                                {% endif %}
+                                                {% if item.IGST != null %}
+                                                    <div style="margin-left: 250px;">
+                                                        IGST:&nbsp;{{item.IGST|floatformat}}%&nbsp;{{item.PI_IGST|floatformat:"2"}}
+                                                    </div>
+                                                {% endif %}
+                                                {% if item.SGST != null or item.CGST != null %}
+                                                    <div style="margin-left: 250px;">
+                                                        CGST:&nbsp;{{item.CGST|floatformat}}%&nbsp;{{item.PI_CGST|floatformat:"2"}}
+                                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                                        SGST:&nbsp;{{item.SGST|floatformat}}%&nbsp;{{item.PI_SGST|floatformat:"2"}}
+                                                    </div>
+                                                {% endif %}
+                                            {% endif %}
+
+                                            {% if item.Type == "A" %}
+                                                {% if item.IGST != null and item.IGST != 0 %}
+                                                    <div style="margin-left: 250px;">
+                                                        IGST:&nbsp;{{item.IGST}}%&nbsp;{{item.PI_IGST|floatformat:"2"}}
+                                                    </div>
+                                                {% endif %}
+                                                {% if item.SGST != null and item.SGST != 0 or item.CGST != null and item.CGST != 0 %}
+                                                    <div style="margin-left: 250px;">
+                                                        CGST:&nbsp;{{item.CGST}}%&nbsp;{{item.PI_CGST|floatformat:"2"}}
+                                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                                        SGST:&nbsp;{{item.SGST}}%&nbsp;{{item.PI_SGST|floatformat:"2"}}
+                                                    </div>
+                                                {% endif %}
+                                            {% endif %}
+                                        </td>
+                                        <td style='width: 15%;text-align: left;vertical-align: top;'>{{item.PI_Qty}}&nbsp;&nbsp;
+                                            {% if item.UOM == null %}
+                                                <span></span>
+                                            {% else %}
+                                                <span>{{item.UOM}}</span>
+                                            {% endif %}
+                                        </td>
+                                        <td style='width: 15%;text-align: right;vertical-align: top;'>
+                                            {% if item.UnitPrice == null or item.UnitPrice == 0 %}
+                                                <span></span>
+                                            {% else %}
+                                                <span>{{item.UnitPrice|floatformat:"2"}}</span>
+                                            {% endif %}
+                                        </td>
+                                        <td style="width: 15%;text-align: right;vertical-align: top;">
+                                            {% if item.MultiplyUnitPrice == 0 %}
+                                                <span></span>
+                                            {% endif %}
+                                            {% if item.MultiplyUnitPrice != 0 %}
+                                                <span>{{item.MultiplyUnitPrice|floatformat:"2"}}</span>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    {% endif %}
+
+</body>
+</html>
+
+
